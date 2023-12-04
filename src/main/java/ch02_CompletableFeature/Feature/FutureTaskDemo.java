@@ -1,8 +1,8 @@
 package ch02_CompletableFeature.Feature;
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
-
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
 /**
  * @author XuHan
@@ -10,25 +10,6 @@ import java.util.concurrent.*;
  * 默认笔记 ： https://blog.csdn.net/qq_31745863/article/details/129463565
  */
 public class FutureTaskDemo {
-    private static ThreadPoolExecutor THREAD_POOL;
-    static {
-        // 默认线程池参数
-        int corePoolSize = Runtime.getRuntime().availableProcessors() * 5;
-        int maximumPoolSize = corePoolSize;
-        int keepAliveTime = 0;
-        TimeUnit minutes = TimeUnit.MILLISECONDS;
-        // 定义一个默认的线程池
-        BlockingQueue<Runnable> sendContentWorkQueue = new LinkedBlockingQueue<>(300);
-        ThreadFactory sendContentThreadFactory = new ThreadFactoryBuilder().setNameFormat("CONTENT_THREAD_POOL-%d").build();
-        THREAD_POOL = new ThreadPoolExecutor(3,
-                3,
-                keepAliveTime,
-                minutes,
-                sendContentWorkQueue,
-                sendContentThreadFactory,
-                new ThreadPoolExecutor.CallerRunsPolicy());
-    }
-
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         long startTime = System.currentTimeMillis();
 
