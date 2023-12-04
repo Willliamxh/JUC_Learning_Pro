@@ -1,4 +1,4 @@
-package ch02_CompletableFeature.Feature.disadvantage;
+package ch02_CompletableFeature.c01_Feature.disadvantage;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;

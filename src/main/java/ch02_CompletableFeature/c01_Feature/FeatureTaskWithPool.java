@@ -1,4 +1,4 @@
-package ch02_CompletableFeature.Feature;
+package ch02_CompletableFeature.c01_Feature;
 
 import ch02_CompletableFeature.LogHelper;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;

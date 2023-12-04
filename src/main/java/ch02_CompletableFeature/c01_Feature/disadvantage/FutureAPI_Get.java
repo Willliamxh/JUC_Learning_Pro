@@ -1,4 +1,4 @@
-package ch02_CompletableFeature.Feature.disadvantage;
+package ch02_CompletableFeature.c01_Feature.disadvantage;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 

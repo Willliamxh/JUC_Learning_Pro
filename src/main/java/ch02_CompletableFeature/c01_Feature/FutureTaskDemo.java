@@ -1,4 +1,4 @@
-package ch02_CompletableFeature.Feature;
+package ch02_CompletableFeature.c01_Feature;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
