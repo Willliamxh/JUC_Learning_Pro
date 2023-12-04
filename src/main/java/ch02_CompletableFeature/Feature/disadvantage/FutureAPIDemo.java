@@ -1,26 +1,57 @@
 package ch02_CompletableFeature.Feature.disadvantage;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
+import java.util.concurrent.*;
 
 /**
  * @author XuHan
  * @date 2023/12/4 16:23
  */
 public class FutureAPIDemo {
+    private static ThreadPoolExecutor THREAD_POOL;
+    static {
+        // 默认线程池参数
+        int corePoolSize = Runtime.getRuntime().availableProcessors() * 5;
+        int maximumPoolSize = corePoolSize;
+        int keepAliveTime = 0;
+        TimeUnit minutes = TimeUnit.MILLISECONDS;
+        // 定义一个默认的线程池
+        BlockingQueue<Runnable> sendContentWorkQueue = new LinkedBlockingQueue<>(300);
+        ThreadFactory sendContentThreadFactory = new ThreadFactoryBuilder().setNameFormat("THREAD_POOL-%d").build();
+        THREAD_POOL = new ThreadPoolExecutor(3,
+                3,
+                keepAliveTime,
+                minutes,
+                sendContentWorkQueue,
+                sendContentThreadFactory,
+                new ThreadPoolExecutor.CallerRunsPolicy());
+    }
     public static void main(String[] args) throws ExecutionException, InterruptedException, TimeoutException {
         FutureTask<String> futureTask = new FutureTask<>(() ->{
             System.out.println(Thread.currentThread().getName()+"\t...come in");
             TimeUnit.SECONDS.sleep(5);
             return "task over";
         });
-        Thread t1 = new Thread(futureTask,"t1");
-        t1.start();
+        // Thread t1 = new Thread(futureTask,"t1");
+        // t1.start();
+        // 尝试用线程池
+        Future<?> submit = THREAD_POOL.submit(futureTask);
+
         System.out.println(Thread.currentThread().getName()+"/t...忙其他任务了");
 //        System.out.println(futureTask.get()); //get方法等待
-        System.out.println(futureTask.get(3,TimeUnit.SECONDS));//get方法过时不候 抛出timeout异常
+        //get方法过时不候 抛出timeout异常
+        try {
+            System.out.println(futureTask.get(3,TimeUnit.SECONDS));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (TimeoutException e) {
+            throw new RuntimeException(e);
+        } finally {
+            THREAD_POOL.shutdown();
+        }
     }
 
 }
