@@ -8,7 +8,7 @@ import java.util.concurrent.*;
  * @author XuHan
  * @date 2023/12/4 16:23
  */
-public class FutureAPIDemo {
+public class FutureAPI_Get {
     private static ThreadPoolExecutor THREAD_POOL;
     static {
         // 默认线程池参数
