@@ -9,7 +9,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
  * @author XuHan
  * @date 2023/12/4 16:54
  */
-public class CompletableFutureBuildDemo {
+public class CF01_runAsync {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         // runAsync不需要返回参数
         CompletableFuture<Void> completableFuture= CompletableFuture.runAsync(() -> {
