@@ -7,6 +7,7 @@ import java.util.concurrent.*;
 /**
  * @author XuHan
  * @date 2023/12/4 15:52
+ * 默认笔记 ： https://blog.csdn.net/qq_31745863/article/details/129463565
  */
 public class FutureTaskDemo {
     private static ThreadPoolExecutor THREAD_POOL;
