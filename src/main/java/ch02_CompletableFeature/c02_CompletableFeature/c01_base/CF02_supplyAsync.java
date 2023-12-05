@@ -1,4 +1,4 @@
-package ch02_CompletableFeature.c02_CompletableFeature.c01;
+package ch02_CompletableFeature.c02_CompletableFeature.c01_base;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 

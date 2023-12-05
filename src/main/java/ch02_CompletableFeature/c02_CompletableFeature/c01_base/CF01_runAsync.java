@@ -1,4 +1,4 @@
-package ch02_CompletableFeature.c02_CompletableFeature.c01;
+package ch02_CompletableFeature.c02_CompletableFeature.c01_base;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
